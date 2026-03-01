@@ -1,0 +1,252 @@
+[
+    {
+        "id": "1bcdb80dd6a475de",
+        "type": "mqtt out",
+        "z": "f6f2187d.f17ca8",
+        "name": "Broker",
+        "topic": "campus/building1/temperature",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b365289828c93fcb",
+        "x": 830,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "243e1cae856f8754",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "campus/#",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "b365289828c93fcb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 80,
+        "y": 440,
+        "wires": [
+            [
+                "69ab5fba553f641a"
+            ]
+        ]
+    },
+    {
+        "id": "40062caa19883770",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 80,
+        "y": 200,
+        "wires": [
+            [
+                "eb703d8dda3b5030"
+            ]
+        ]
+    },
+    {
+        "id": "eb703d8dda3b5030",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 1",
+        "func": "let temperature = 20 + Math.random() * 10;\nmsg.payload = temperature.toFixed(1);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 200,
+        "wires": [
+            [
+                "1bcdb80dd6a475de"
+            ]
+        ]
+    },
+    {
+        "id": "69ab5fba553f641a",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "514ca3a746b8a1b3",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 80,
+        "y": 280,
+        "wires": [
+            [
+                "c0d62817227ac3ec"
+            ]
+        ]
+    },
+    {
+        "id": "c0d62817227ac3ec",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 2",
+        "func": "let aqi = Math.floor(50 + Math.random() * 100);\nmsg.payload = aqi;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 280,
+        "wires": [
+            [
+                "0276f6c6021001d5"
+            ]
+        ]
+    },
+    {
+        "id": "0276f6c6021001d5",
+        "type": "mqtt out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "campus/building1/air",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b365289828c93fcb",
+        "x": 820,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "393ade92e7b31a6d",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ACTIVE",
+        "payloadType": "str",
+        "x": 80,
+        "y": 360,
+        "wires": [
+            [
+                "48fea3b57b29a397"
+            ]
+        ]
+    },
+    {
+        "id": "48fea3b57b29a397",
+        "type": "mqtt out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "campus/status",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b365289828c93fcb",
+        "x": 840,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "b365289828c93fcb",
+        "type": "mqtt-broker",
+        "name": "Mosquitto Public Broker",
+        "broker": "test.mosquitto.org",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
